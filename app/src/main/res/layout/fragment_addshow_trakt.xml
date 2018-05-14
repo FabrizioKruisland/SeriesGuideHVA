@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/containerAddContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <GridView
+            android:id="@+android:id/list"
+            style="@style/Widget.SeriesGuide.Grid"
+            android:listSelector="@color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnWidth="@dimen/showgrid_columnWidth"
+            android:numColumns="auto_fit"
+            android:stretchMode="columnWidth"
+            tools:listitem="@layout/item_show" />
+
+        <com.battlelancer.seriesguide.widgets.EmptyView
+            android:id="@+id/emptyViewAdd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:emptyViewButtonText="@string/refresh"
+            app:emptyViewMessage="@string/add_empty" />
+
+    </FrameLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBarAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/poweredby"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:background="@color/protection_dark"
+        android:padding="@dimen/default_padding"
+        android:text="@string/powered_by_trakt"
+        android:textAppearance="@style/TextAppearance.Caption.Narrow"
+        android:textColor="@color/black_11" />
+
+</FrameLayout>

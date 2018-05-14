@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_action_seasons_watched_all"
+        android:title="@string/mark_all" />
+    <item
+        android:id="@+id/menu_action_seasons_watched_none"
+        android:title="@string/unmark_all" />
+    <item
+        android:id="@+id/menu_action_seasons_skip"
+        android:title="@string/action_skip" />
+    <item
+        android:id="@+id/menu_action_seasons_collection_add"
+        android:title="@string/action_collection_add" />
+    <item
+        android:id="@+id/menu_action_seasons_collection_remove"
+        android:title="@string/action_collection_remove" />
+    <item
+        android:id="@+id/menu_action_seasons_manage_lists"
+        android:title="@string/list_item_manage" />
+
+
+</menu>

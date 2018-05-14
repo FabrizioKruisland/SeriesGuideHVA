@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Set focus to work around textIsSelectable auto-scroll -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerEpisode"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="beforeDescendants"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:showIn="@layout/fragment_episode">
+
+    <!-- Text appearance set in code. -->
+    <TextView
+        android:id="@+id/textViewEpisodeTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/large_padding"
+        android:layout_marginRight="@dimen/large_padding"
+        android:layout_marginTop="12dp"
+        android:textAppearance="@style/TextAppearance.Title"
+        android:textIsSelectable="true"
+        tools:text="Episode Title Of Episode" />
+
+    <!-- Text appearance set in code. -->
+    <TextView
+        android:id="@+id/textViewEpisodeReleaseTime"
+        style="@style/Block"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/large_padding"
+        android:textAppearance="@style/TextAppearance.Caption"
+        android:textIsSelectable="true"
+        tools:text="OCT 15, 2013 (TUE) · 52" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/containerEpisodeImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/inline_padding"
+        android:layout_marginLeft="@dimen/large_padding"
+        android:layout_marginRight="@dimen/large_padding"
+        android:background="?attr/sgColorBackgroundDim"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        tools:ignore="Overdraw">
+
+        <ImageView
+            android:id="@+id/imageViewEpisode"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/description_image"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="w,16:9"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <include layout="@layout/buttons_episode" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="@dimen/large_padding"
+        android:layout_marginLeft="@dimen/large_padding"
+        android:layout_marginRight="@dimen/large_padding"
+        android:background="?attr/sgColorDivider" />
+
+    <TextView
+        android:id="@+id/textViewEpisodeDescription"
+        style="@style/Block.FlowText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/large_padding"
+        android:textAppearance="@style/TextAppearance.Body"
+        android:textIsSelectable="true"
+        tools:text="This is a sample description of what happens in this episode. A lot." />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/large_padding"
+        android:layout_marginRight="@dimen/large_padding"
+        android:background="?attr/sgColorDivider" />
+
+    <include layout="@layout/ratings_shows" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/large_padding"
+        android:layout_marginRight="@dimen/large_padding"
+        android:background="?attr/sgColorDivider" />
+
+    <TextView
+        android:id="@+id/labelEpisodeGuestStars"
+        style="@style/Block.WithTopMargin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/episode_gueststars"
+        android:textAppearance="@style/TextAppearance.Body.Bold" />
+
+    <TextView
+        android:id="@+id/textViewEpisodeGuestStars"
+        style="@style/Block.FlowText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.Body"
+        android:textIsSelectable="true"
+        tools:text="Daniel Craig, Jaimie Alexander, Kiefer Sutherland, Stephanie Leonidas" />
+
+    <TextView
+        android:id="@+id/labelEpisodeDirectors"
+        style="@style/Block.WithTopMargin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/episode_directors"
+        android:textAppearance="@style/TextAppearance.Body.Bold" />
+
+    <TextView
+        android:id="@+id/textViewEpisodeDirectors"
+        style="@style/Block.FlowText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.Body"
+        android:textIsSelectable="true"
+        tools:text="Daniel Craig" />
+
+    <TextView
+        android:id="@+id/labelEpisodeWriters"
+        style="@style/Block.WithTopMargin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/episode_writers"
+        android:textAppearance="@style/TextAppearance.Body.Bold" />
+
+    <TextView
+        android:id="@+id/textViewEpisodeWriters"
+        style="@style/Block.FlowText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.Body"
+        android:textIsSelectable="true"
+        tools:text="Daniel Craig, Jaimie Alexander" />
+
+    <TextView
+        android:id="@+id/labelEpisodeDvd"
+        style="@style/Block.WithTopMargin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/episode_dvdnumber"
+        android:textAppearance="@style/TextAppearance.Body.Bold" />
+
+    <TextView
+        android:id="@+id/textViewEpisodeDvd"
+        style="@style/Block"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.Body"
+        android:textIsSelectable="true"
+        tools:text="42.0" />
+
+    <TextView
+        android:id="@+id/labelEpisodeReleaseDay"
+        style="@style/Block.WithTopMargin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/episode_firstaired"
+        android:textAppearance="@style/TextAppearance.Body.Bold" />
+
+    <TextView
+        android:id="@+id/textViewEpisodeReleaseDate"
+        style="@style/Block"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.Body"
+        android:textIsSelectable="true"
+        tools:text="2014/07/25 CEST (Fri)" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/large_padding"
+        android:background="?attr/sgColorDivider" />
+
+    <include
+        layout="@layout/buttons_services"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

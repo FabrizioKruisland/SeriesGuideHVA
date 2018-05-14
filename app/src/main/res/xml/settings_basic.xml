@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <CheckBoxPreference
+        android:defaultValue="False"
+        android:key="com.battlelancer.seriesguide.trakt.quickcheckin"
+        android:summary="@string/pref_quick_checkin_summary"
+        android:title="@string/pref_quick_checkin" />
+
+    <PreferenceCategory android:title="@string/shows">
+
+        <ListPreference
+            android:defaultValue="@string/show_default_language"
+            android:entries="@array/languagesShows"
+            android:entryValues="@array/languageCodesShows"
+            android:key="language"
+            android:title="@string/pref_language" />
+
+        <ListPreference
+            android:defaultValue="@string/show_default_language"
+            android:entries="@array/languagesShows"
+            android:entryValues="@array/languageCodesShows"
+            android:key="com.battlelancer.seriesguide.languageFallback"
+            android:title="@string/pref_language_fallback" />
+
+        <Preference
+            android:key="com.battlelancer.seriesguide.timeoffset"
+            android:title="@string/pref_offset" />
+
+        <CheckBoxPreference
+            android:defaultValue="False"
+            android:key="onlyFutureEpisodes"
+            android:summary="@string/pref_onlyfuturesummary"
+            android:title="@string/pref_onlyfuture" />
+
+        <CheckBoxPreference
+            android:defaultValue="False"
+            android:key="onlySeasonEpisodes"
+            android:summary="@string/pref_onlyseasonepssummary"
+            android:title="@string/pref_onlyseasoneps" />
+
+        <CheckBoxPreference
+            android:defaultValue="False"
+            android:key="com.battlelancer.seriesguide.shows.exactdate"
+            android:summary="@string/pref_exactdates_summary"
+            android:title="@string/pref_exactdates" />
+
+        <CheckBoxPreference
+            android:defaultValue="False"
+            android:key="com.battlelancer.seriesguide.PREVENT_SPOILERS"
+            android:summary="@string/pref_nospoilers_summary"
+            android:title="@string/pref_nospoilers" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Theme" />
+
+    <style name="Theme.BaseSeriesGuide" parent="Theme.AppCompat.NoActionBar">
+
+        <!-- All customizations that are SPECIFIC to API-level 15+ go here. -->
+
+        <!-- Special attributes -->
+        <item name="selectableItemBackground">@drawable/list_selector_sg</item>
+        <item name="sgBorderlessButtonBackground">@drawable/btn_borderless_sg</item>
+
+        <!-- Windows -->
+        <item name="android:dialogTheme">@style/Theme.SeriesGuide.Dialog</item>
+
+        <!-- System widgets -->
+        <item name="android:borderlessButtonStyle">@style/Widget.SeriesGuide.Button.Borderless</item>
+        <item name="android:progressBarStyleHorizontal">@style/Widget.SeriesGuide.ProgressBar</item>
+        <item name="android:editTextBackground">@drawable/edit_text_sg</item>
+        <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_sg</item>
+
+        <!-- Fast scroll thumb -->
+        <item name="android:fastScrollThumbDrawable">@drawable/fastscroll_thumb_sg</item>
+
+    </style>
+
+    <!-- SeriesGuides default theme -->
+    <style name="Theme.SeriesGuide" parent="Theme.BaseSeriesGuide">
+
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+
+        <!--   your app's branding color (for the app bar) -->
+        <item name="colorPrimary">@color/accent_primary</item>
+        <!--   darker variant of colorPrimary (for status bar, contextual app bars) -->
+        <item name="colorPrimaryDark">@color/accent_primary_dark</item>
+        <!--   theme UI controls like checkboxes and text fields -->
+        <item name="colorAccent">@color/teal_500</item>
+
+        <!-- Special attributes -->
+        <item name="sgActivatedItemBackgroundDrawer">@drawable/activated_background_drawer_sg</item>
+
+        <!-- Windows -->
+        <item name="android:colorBackground">@color/background</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="windowActionModeOverlay">true</item>
+
+        <!-- System widgets -->
+        <item name="android:activatedBackgroundIndicator">@drawable/activated_background_sg</item>
+
+        <!-- Action bar -->
+        <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.ActionBar</item>
+
+        <!-- Text -->
+        <item name="android:textAppearance">@style/TextAppearance</item>
+
+        <!-- Colors -->
+        <item name="sgTextColorGreen">@color/teal_500</item>
+        <item name="sgTextColorSecondaryDim">@color/text_secondary_disabled_dark</item>
+        <item name="sgColorBackgroundCard">@color/background_card_dark</item>
+        <item name="sgColorBackgroundDim">@color/black_38</item>
+        <item name="sgColorIcon">@color/white</item>
+        <item name="sgColorIconInactive">@color/white_50</item>
+        <item name="sgColorSeparator">@color/separator</item>
+        <item name="sgColorDivider">@color/divider</item>
+        <item name="sgColorNavDrawerIcon">@color/nav_drawer_icon_sg</item>
+        <item name="sgColorNavDrawerText">@color/nav_drawer_text_sg</item>
+        <item name="sgColorShadow">@color/protection_dark</item>
+
+        <!-- Drawables -->
+        <item name="drawableBackgroundGradient">@drawable/background_gradient</item>
+        <item name="drawableCancel">@drawable/ic_action_cancel</item>
+        <item name="drawableTraktHeart">@drawable/trakt_heart</item>
+
+    </style>
+
+    <style name="Theme.BaseSeriesGuide.DarkBlue" parent="Theme.AppCompat.NoActionBar">
+
+        <!-- All customizations that are SPECIFIC to API-level 15+ go here. -->
+
+        <!-- Special attributes -->
+        <item name="selectableItemBackground">@drawable/list_selector_dark</item>
+        <item name="sgBorderlessButtonBackground">@drawable/btn_borderless_dark</item>
+
+        <!-- Windows -->
+        <item name="android:dialogTheme">@style/Theme.SeriesGuide.DarkBlue.Dialog</item>
+
+        <!-- System widgets -->
+        <item name="android:borderlessButtonStyle">@style/Widget.SeriesGuide.Button.Borderless</item>
+        <item name="android:progressBarStyleHorizontal">@style/Widget.SeriesGuide.ProgressBar</item>
+        <item name="android:editTextBackground">@drawable/edit_text_sg</item>
+        <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_dark</item>
+
+        <!-- Fast scroll thumb -->
+        <item name="android:fastScrollThumbDrawable">@drawable/fastscroll_thumb_sg</item>
+
+    </style>
+
+    <!-- Dark Android theme -->
+    <style name="Theme.SeriesGuide.DarkBlue" parent="Theme.BaseSeriesGuide.DarkBlue">
+
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+
+        <!--   your app's branding color (for the app bar) -->
+        <item name="colorPrimary">@android:color/black</item>
+        <!--   theme UI controls like checkboxes and text fields -->
+        <item name="colorAccent">@color/teal_500</item>
+
+        <!-- Special attributes -->
+        <item name="sgActivatedItemBackgroundDrawer">@drawable/activated_background_drawer_sg</item>
+
+        <!-- Windows -->
+        <item name="android:colorBackground">@color/background</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="windowActionModeOverlay">true</item>
+
+        <!-- System widgets -->
+        <item name="android:activatedBackgroundIndicator">@drawable/activated_background_sg</item>
+
+        <!-- Colors -->
+        <item name="sgTextColorGreen">@color/teal_500</item>
+        <item name="sgTextColorSecondaryDim">@color/text_secondary_disabled_dark</item>
+        <item name="sgColorBackgroundCard">@color/background_card_dark</item>
+        <item name="sgColorBackgroundDim">@color/black_38</item>
+        <item name="sgColorIcon">@color/white</item>
+        <item name="sgColorIconInactive">@color/white_50</item>
+        <item name="sgColorSeparator">@color/separator</item>
+        <item name="sgColorDivider">@color/divider</item>
+        <item name="sgColorNavDrawerIcon">@color/nav_drawer_icon_dark</item>
+        <item name="sgColorNavDrawerText">@color/nav_drawer_text_dark</item>
+        <item name="sgColorShadow">@color/protection_dark</item>
+
+        <!-- Drawables -->
+        <item name="drawableBackgroundGradient">@drawable/background_gradient</item>
+
+        <item name="drawableCancel">@drawable/ic_action_cancel</item>
+        <item name="drawableTraktHeart">@drawable/trakt_heart</item>
+
+    </style>
+
+    <style name="Theme.BaseSeriesGuide.Light" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!-- All customizations that are SPECIFIC to API-level 15+ go here. -->
+
+        <!-- Special attributes -->
+        <item name="selectableItemBackground">@drawable/list_selector_sg</item>
+        <item name="sgBorderlessButtonBackground">@drawable/btn_borderless_sg_light</item>
+
+        <!-- System widgets -->
+        <item name="android:borderlessButtonStyle">@style/Widget.SeriesGuide.Button.Borderless</item>
+        <item name="android:progressBarStyleHorizontal">@style/Widget.SeriesGuide.ProgressBar.Light</item>
+        <item name="android:editTextBackground">@drawable/edit_text_holo_light</item>
+        <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_sg</item>
+
+        <!-- Fast scroll thumb -->
+        <item name="android:fastScrollThumbDrawable">@drawable/fastscroll_thumb_sg</item>
+
+    </style>
+
+    <!-- SeriesGuide Light theme -->
+    <style name="Theme.SeriesGuide.Light" parent="Theme.BaseSeriesGuide.Light">
+
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+
+        <!--   your app's branding color (for the app bar) -->
+        <item name="colorPrimary">@color/accent_primary</item>
+        <!--   darker variant of colorPrimary (for status bar, contextual app bars) -->
+        <item name="colorPrimaryDark">@color/accent_primary_dark</item>
+        <!--   theme UI controls like checkboxes and text fields -->
+        <item name="colorAccent">@color/teal_500</item>
+
+        <!-- Special attributes -->
+        <item name="sgActivatedItemBackgroundDrawer">@drawable/activated_background_drawer_sg_light</item>
+
+        <!-- Windows -->
+        <item name="android:colorBackground">@color/background_inverse</item>
+        <item name="android:windowBackground">@color/background_inverse</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:dialogTheme">@style/Theme.SeriesGuide.Light.Dialog</item>
+
+        <!-- Remove default window shadow -->
+        <item name="android:windowContentOverlay">@null</item>
+
+        <!-- System widgets -->
+        <item name="android:activatedBackgroundIndicator">@drawable/activated_background_sg_light</item>
+
+        <!-- Action bar -->
+        <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+
+        <!-- Text -->
+        <item name="android:textAppearance">@style/TextAppearance</item>
+
+        <!-- Colors -->
+        <item name="sgTextColorGreen">@color/teal_500</item>
+        <item name="sgTextColorSecondaryDim">@color/text_secondary_disabled_light</item>
+        <item name="sgColorBackgroundCard">@color/background_card_light</item>
+        <item name="sgColorBackgroundDim">@color/white_50</item>
+        <item name="sgColorIcon">@color/black_54</item>
+        <item name="sgColorIconInactive">@color/black_38</item>
+        <item name="sgColorSeparator">@color/separator_inverse</item>
+        <item name="sgColorDivider">@color/divider_inverse</item>
+        <item name="sgColorNavDrawerIcon">@color/nav_drawer_icon_sg_light</item>
+        <item name="sgColorNavDrawerText">@color/nav_drawer_text_sg_light</item>
+        <item name="sgColorShadow">@color/protection_light</item>
+
+        <!-- Drawables -->
+        <item name="drawableBackgroundGradient">@drawable/background_gradient_light</item>
+        <item name="drawableCancel">@drawable/ic_action_cancel_inverse</item>
+        <item name="drawableTraktHeart">@drawable/trakt_heart_inverse</item>
+
+    </style>
+
+    <!-- Special themes -->
+    <style name="Theme.SeriesGuide.Dialog" parent="Theme.AppCompat.Dialog">
+        <!-- Copy of attributes relevant for our dialogs -->
+        <item name="colorPrimary">@color/accent_primary</item>
+        <item name="colorPrimaryDark">@color/accent_primary_dark</item>
+        <item name="colorAccent">@color/teal_500</item>
+        <item name="selectableItemBackground">@drawable/list_selector_sg</item>
+        <item name="sgBorderlessButtonBackground">@drawable/btn_borderless_sg</item>
+
+        <item name="android:borderlessButtonStyle">@style/Widget.SeriesGuide.Button.Borderless</item>
+        <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_sg</item>
+    </style>
+
+    <style name="Theme.SeriesGuide.Dialog.CheckIn">
+        <item name="android:windowAnimationStyle">@style/Animation.CheckinDialog</item>
+    </style>
+
+    <style name="Theme.SeriesGuide.DarkBlue.Dialog" parent="Theme.AppCompat.Dialog">
+        <!-- Copy of attributes relevant for our dialogs -->
+        <item name="colorAccent">@color/teal_500</item>
+        <item name="selectableItemBackground">@drawable/list_selector_dark</item>
+        <item name="sgBorderlessButtonBackground">@drawable/btn_borderless_dark</item>
+
+        <item name="android:borderlessButtonStyle">@style/Widget.SeriesGuide.Button.Borderless</item>
+        <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_dark</item>
+    </style>
+
+    <style name="Theme.SeriesGuide.DarkBlue.Dialog.CheckIn">
+        <item name="android:windowAnimationStyle">@style/Animation.CheckinDialog</item>
+    </style>
+
+    <style name="Theme.SeriesGuide.Light.Dialog" parent="Theme.AppCompat.Light.Dialog">
+        <!-- Copy of attributes relevant for our dialogs -->
+        <item name="colorPrimary">@color/accent_primary</item>
+        <item name="colorPrimaryDark">@color/accent_primary_dark</item>
+        <item name="colorAccent">@color/teal_500</item>
+        <item name="selectableItemBackground">@drawable/list_selector_sg</item>
+        <item name="sgBorderlessButtonBackground">@drawable/btn_borderless_sg_light</item>
+
+        <item name="android:borderlessButtonStyle">@style/Widget.SeriesGuide.Button.Borderless</item>
+        <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_sg</item>
+    </style>
+
+    <style name="Theme.SeriesGuide.Light.Dialog.CheckIn">
+        <item name="android:windowAnimationStyle">@style/Animation.CheckinDialog</item>
+    </style>
+
+    <style name="Theme.SeriesGuide.Drawer" />
+
+    <style name="Theme.SeriesGuide.DarkBlue.Drawer" />
+
+    <style name="Theme.SeriesGuide.Light.Drawer" />
+
+    <style name="Theme.SeriesGuide.Immersive" />
+
+    <style name="Theme.SeriesGuide.DarkBlue.Immersive" />
+
+    <style name="Theme.SeriesGuide.Light.Immersive" />
+
+    <style name="ThemeOverlay.WhiteAccent" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="colorAccent">@color/white</item>
+    </style>
+
+</resources>

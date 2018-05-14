@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.battlelancer.seriesguide">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- Analytics (non-Google Play devices) -->
+    <uses-permission
+        android:name="android.permission.WAKE_LOCK"
+        tools:remove="android:maxSdkVersion" />
+    <!-- Notification service -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- Sync adapter -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" android:maxSdkVersion="22" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" android:maxSdkVersion="22" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" android:maxSdkVersion="22" />
+    <uses-permission android:name="android.permission.READ_SYNC_STATS" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <!-- Android Beam -->
+    <uses-permission android:name="android.permission.NFC" />
+    <!-- Show shortcuts -->
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
+    <application
+        android:name="com.battlelancer.seriesguide.SgApp"
+        android:allowBackup="true"
+        android:backupAgent="com.battlelancer.seriesguide.PrefBackupHelper"
+        android:fullBackupOnly="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:restrictedAccountType="${applicationId}"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="false"
+        android:theme="@style/Theme.SeriesGuide"
+        tools:ignore="AllowBackup,UnusedAttribute">
+
+        <!-- Samsung MultiWindow support -->
+        <meta-data
+            android:name="com.samsung.android.sdk.multiwindow.enable"
+            android:value="true" />
+
+        <!-- Content provider -->
+        <provider
+            android:name="com.battlelancer.seriesguide.provider.SeriesGuideProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="true"
+            tools:ignore="ExportedContentProvider" />
+
+        <!-- Launch activity -->
+        <activity
+            android:name="com.battlelancer.seriesguide.ui.ShowsActivity"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.battlelancer.seriesguide.api.action.VIEW_EPISODE" />
+                <action android:name="com.battlelancer.seriesguide.api.action.VIEW_SHOW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <!-- launcher shortcuts -->
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+        </activity>
+
+        <!-- Hexagon -->
+        <activity
+            android:name="com.battlelancer.seriesguide.backend.CloudSetupActivity"
+            android:label="@string/hexagon" />
+
+        <!-- Shows -->
+        <activity
+            android:name="com.battlelancer.seriesguide.ui.OverviewActivity"
+            android:exported="true"
+            android:parentActivityName="com.battlelancer.seriesguide.ui.ShowsActivity">
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value="com.battlelancer.seriesguide.ui.SearchActivity" />
+            <!-- Parent activity meta-data to support ICS -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.battlelancer.seriesguide.ui.ShowsActivity" />
+        </activity>
+        <activity android:name="com.battlelancer.seriesguide.ui.episodes.EpisodesActivity" />
+        <activity android:name="com.battlelancer.seriesguide.ui.episodes.EpisodeDetailsActivity" />
+        <activity
+            android:name="com.battlelancer.seriesguide.ui.ListsActivity"
+            android:label="@string/lists" />
+        <activity
+            android:name="com.battlelancer.seriesguide.ui.streams.HistoryActivity"
+            android:label="@string/user_stream" />
+        <activity
+            android:name="com.battlelancer.seriesguide.ui.SearchActivity"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="stateHidden">
+            <!-- Make this activity accessible from global search -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <!-- Integrate with voice search: "OK Google, search for X on SeriesGuide" -->
+            <intent-filter>
+                <action android:name="com.google.android.gms.actions.SEARCH_ACTION" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <!-- Receive links to shows -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+
+            <!-- Receive Android Beams of shows -->
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="application/vnd.com.uwetrottmann.seriesguide" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.search.TraktShowsActivity"
+            android:parentActivityName=".ui.SearchActivity">
+
+            <!-- Parent activity meta-data to support ICS -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.SearchActivity" />
+        </activity>
+
+        <!-- Movies -->
+        <activity
+            android:name="com.battlelancer.seriesguide.ui.MoviesActivity"
+            android:label="@string/movies" />
+        <activity
+            android:name="com.battlelancer.seriesguide.ui.movies.MoviesSearchActivity"
+            android:parentActivityName="com.battlelancer.seriesguide.ui.MoviesActivity"
+            android:windowSoftInputMode="stateHidden">
+            <!-- Parent activity meta-data to support ICS -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.battlelancer.seriesguide.ui.MoviesActivity" />
+        </activity>
+        <activity
+            android:name="com.battlelancer.seriesguide.ui.movies.MovieDetailsActivity"
+            android:parentActivityName="com.battlelancer.seriesguide.ui.MoviesActivity">
+            <!-- Parent activity meta-data to support ICS -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.battlelancer.seriesguide.ui.MoviesActivity" />
+        </activity>
+
+        <!-- Settings -->
+        <activity
+            android:name="com.battlelancer.seriesguide.ui.SeriesGuidePreferences"
+            android:label="@string/preferences">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.battlelancer.seriesguide.ui.ShowsActivity" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.MANAGE_NETWORK_USAGE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.NOTIFICATION_PREFERENCES" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.battlelancer.seriesguide.extensions.ExtensionsConfigurationActivity"
+            android:exported="true"
+            android:label="@string/action_extensions_configure" />
+
+        <!-- Import and Export -->
+        <activity
+            android:name="com.battlelancer.seriesguide.ui.BackupDeleteActivity"
+            android:label="@string/backup" />
+        <activity
+            android:name="com.battlelancer.seriesguide.dataliberation.DataLiberationActivity"
+            android:label="@string/backup" />
+
+        <!-- trakt -->
+        <activity
+            android:name="com.battlelancer.seriesguide.traktapi.ConnectTraktActivity"
+            android:label="@string/trakt" />
+        <activity
+            android:name="com.battlelancer.seriesguide.traktapi.TraktAuthActivity"
+            android:label="@string/connect_trakt"
+            android:launchMode="singleTask">
+            <!-- Support callback for external browser OAuth flow. -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="sgoauth" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.battlelancer.seriesguide.ui.comments.TraktCommentsActivity"
+            android:windowSoftInputMode="stateHidden" />
+
+        <!-- Others -->
+        <activity android:name="com.battlelancer.seriesguide.billing.BillingActivity" />
+        <activity
+            android:name="com.battlelancer.seriesguide.ui.stats.StatsActivity"
+            android:label="@string/statistics" />
+        <activity
+            android:name="com.battlelancer.seriesguide.traktapi.QuickCheckInActivity"
+            android:exported="true"
+            android:taskAffinity="com.battlelancer.seriesguide.task.quickcheckin" />
+        <activity
+            android:name="com.battlelancer.seriesguide.ui.HelpActivity"
+            android:label="@string/help">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.battlelancer.seriesguide.ui.ShowsActivity" />
+        </activity>
+        <activity
+            android:name="com.battlelancer.seriesguide.ui.FullscreenImageActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity android:name="com.battlelancer.seriesguide.ui.people.PeopleActivity" />
+        <activity android:name="com.battlelancer.seriesguide.ui.people.PersonActivity" />
+
+        <!-- Unwatched counter update service -->
+        <service
+            android:name="com.battlelancer.seriesguide.ui.overview.UnwatchedUpdaterService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <!-- Notification service -->
+        <receiver android:name="com.battlelancer.seriesguide.service.NotificationActionReceiver" />
+        <receiver android:name="com.battlelancer.seriesguide.service.NotificationAlarmReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Chrome custom tabs -->
+        <receiver android:name="com.battlelancer.seriesguide.customtabs.FeedbackBroadcastReceiver" />
+
+        <!-- List widget configuration -->
+        <activity
+            android:name="com.battlelancer.seriesguide.appwidget.ListWidgetConfigure"
+            android:taskAffinity="com.battlelancer.seriesguide.task.configuration">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <!-- Widgets -->
+        <receiver
+            android:name="com.battlelancer.seriesguide.appwidget.ListWidgetProvider"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.battlelancer.seriesguide.appwidget.UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/appwidget_v11_info" />
+        </receiver>
+        <service
+            android:name="com.battlelancer.seriesguide.appwidget.ListWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <receiver
+            android:name="com.battlelancer.seriesguide.appwidget.AppWidget"
+            android:enabled="@bool/isIceCreamSandwichOrLower"
+            android:label="@string/smallwidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/appwidget_info" />
+        </receiver>
+        <service
+            android:name="com.battlelancer.seriesguide.appwidget.AppWidget$UpdateService"
+            android:enabled="@bool/isIceCreamSandwichOrLower" />
+
+        <!-- DashClock Extension -->
+        <service
+            android:name="com.battlelancer.seriesguide.dashclock.UpcomingEpisodeExtension"
+            android:icon="@drawable/ic_notification"
+            android:label="@string/dashclock_extension_label"
+            android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">
+            <intent-filter>
+                <action android:name="com.google.android.apps.dashclock.Extension" />
+            </intent-filter>
+
+            <meta-data
+                android:name="protocolVersion"
+                android:value="2" />
+            <meta-data
+                android:name="worldReadable"
+                android:value="true" />
+            <meta-data
+                android:name="description"
+                android:value="@string/dashclock_extension_description" />
+            <meta-data
+                android:name="settingsActivity"
+                android:value="com.battlelancer.seriesguide.dashclock.UpcomingEpisodeSettingsActivity" />
+        </service>
+
+        <activity
+            android:name="com.battlelancer.seriesguide.dashclock.UpcomingEpisodeSettingsActivity"
+            android:exported="true" />
+
+        <!-- SeriesGuide Extension listener -->
+        <receiver
+            android:name="com.battlelancer.seriesguide.extensions.ExtensionActionReceiver"
+            android:exported="true"
+            tools:ignore="ExportedReceiver" />
+        <service
+            android:name="com.battlelancer.seriesguide.extensions.ExtensionActionService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <!-- Built-in SeriesGuide extensions -->
+        <receiver
+            android:name="com.battlelancer.seriesguide.extensions.AmazonExtensionReceiver"
+            android:description="@string/description_extension_amazon"
+            android:icon="@mipmap/ic_app"
+            android:label="@string/extension_amazon"
+            tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="com.battlelancer.seriesguide.api.SeriesGuideExtension" />
+            </intent-filter>
+            <meta-data
+                android:name="settingsActivity"
+                android:value="com.battlelancer.seriesguide.extensions.ExtensionsConfigurationActivity" />
+        </receiver>
+        <service
+            android:name="com.battlelancer.seriesguide.extensions.AmazonExtension"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="true" />
+
+        <receiver
+            android:name="com.battlelancer.seriesguide.extensions.YouTubeExtensionReceiver"
+            android:description="@string/description_extension_youtube"
+            android:icon="@mipmap/ic_app"
+            android:label="@string/extension_youtube"
+            tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="com.battlelancer.seriesguide.api.SeriesGuideExtension" />
+            </intent-filter>
+        </receiver>
+        <service
+            android:name="com.battlelancer.seriesguide.extensions.YouTubeExtension"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="true" />
+
+        <receiver
+            android:name="com.battlelancer.seriesguide.extensions.VodsterExtensionReceiver"
+            android:description="@string/extension_vodster_description"
+            android:icon="@mipmap/ic_app"
+            android:label="@string/extension_vodster"
+            tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="com.battlelancer.seriesguide.api.SeriesGuideExtension" />
+            </intent-filter>
+        </receiver>
+        <service
+            android:name="com.battlelancer.seriesguide.extensions.VodsterExtension"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="true" />
+
+        <receiver
+            android:name="com.battlelancer.seriesguide.extensions.WebSearchExtensionReceiver"
+            android:description="@string/description_extension_web_search"
+            android:icon="@mipmap/ic_app"
+            android:label="@string/web_search"
+            tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="com.battlelancer.seriesguide.api.SeriesGuideExtension" />
+            </intent-filter>
+        </receiver>
+        <service
+            android:name="com.battlelancer.seriesguide.extensions.WebSearchExtension"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <!-- Sync service -->
+        <service
+            android:name="com.battlelancer.seriesguide.sync.SgAuthenticationService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/accountauth" />
+        </service>
+        <service
+            android:name="com.battlelancer.seriesguide.sync.SgSyncService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/sync_seriesguide" />
+        </service>
+
+        <!-- Register AnalyticsReceiver and AnalyticsService to support background dispatching
+        on non-Google Play devices. -->
+        <receiver
+            android:name="com.google.android.gms.analytics.AnalyticsReceiver"
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="com.google.android.gms.analytics.ANALYTICS_DISPATCH" />
+            </intent-filter>
+        </receiver>
+        <service
+            android:name="com.google.android.gms.analytics.AnalyticsService"
+            android:enabled="true"
+            android:exported="false" />
+    </application>
+
+</manifest>

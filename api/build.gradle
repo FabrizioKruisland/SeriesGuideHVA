@@ -1,0 +1,122 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+apply plugin: 'signing'
+apply plugin: 'io.codearte.nexus-staging'
+
+group = "com.uwetrottmann.seriesguide"
+archivesBaseName = "seriesguide-api"
+version = "2.0.3"
+
+android {
+    compileSdkVersion versions.compileSdk
+
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion 26
+    }
+
+    compileOptions {
+        encoding = "UTF-8"
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+dependencies {
+    implementation "com.android.support:support-compat:${versions.supportLibrary}"
+}
+
+// load properties file
+Properties props = new Properties()
+props.load(new FileInputStream(file("../local.properties")))
+def localSdkDir = props["sdk.dir"]
+
+task generateJavadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    title = "SeriesGuide API"
+
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+
+    options.locale = "en"
+    options.windowTitle = "SeriesGuide API"
+    options.linksOffline("http://developer.android.com/reference", "${localSdkDir}/docs/reference")
+    options.noDeprecated = true
+    options.noHelp = true
+    options.noIndex = true
+    options.noTree = true
+    options.stylesheetFile = file('./javadoc_stylesheet.css')
+}
+
+// Add in dependency classpath to avoid cannot find symbol (http://stackoverflow.com/a/34572606/1676363)
+afterEvaluate {
+    generateJavadoc.classpath += files(android.libraryVariants.collect { variant ->
+        variant.javaCompile.classpath.files
+    })
+}
+
+task javadocJar(type: Jar, dependsOn: generateJavadoc) {
+    classifier = 'javadoc'
+    from generateJavadoc.destinationDir
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name "SeriesGuide API"
+                packaging "aar"
+                description "Extension API for SeriesGuide to provide custom actions on media items"
+                url "http://seriesgui.de/api"
+
+                licenses {
+                    license {
+                        name "Public Domain"
+                        url "http://unlicense.org"
+                    }
+                }
+
+                developers {
+                    developer {
+                        id "uwetrottmann"
+                        name "Uwe Trottmann"
+                        url "http://uwetrottmann.com"
+                    }
+                }
+
+                scm {
+                    url "https://github.com/UweTrottmann/SeriesGuide.git"
+                    connection "scm:git:git://github.com/UweTrottmann/SeriesGuide.git"
+                    developerConnection "scm:git:git@github.com:UweTrottmann/SeriesGuide.git"
+                }
+            }
+        }
+    }
+}
+
+nexusStaging {
+    packageGroup = "com.uwetrottmann"
+}

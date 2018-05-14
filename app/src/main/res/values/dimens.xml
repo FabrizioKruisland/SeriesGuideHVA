@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="inline_padding">4dp</dimen>
+    <dimen name="default_padding">8dp</dimen>
+    <dimen name="large_padding">16dp</dimen>
+    <dimen name="item_padding">2dp</dimen>
+    <dimen name="larger_padding">24dp</dimen>
+    <dimen name="padding_button">12dp</dimen>
+
+    <dimen name="keyline">16dp</dimen>
+    <dimen name="keyline_minus_16">0dp</dimen>
+    <dimen name="icon_large_size">40dp</dimen>
+    <dimen name="item_regular_height">56dp</dimen>
+
+    <!-- Text -->
+    <dimen name="text_size_menu_sg">16sp</dimen>
+    <dimen name="text_size_default_sg">14sp</dimen>
+    <dimen name="text_size_caption_sg">12sp</dimen>
+
+    <!-- Legacy widget -->
+    <dimen name="widget_margin">5dp</dimen>
+    <dimen name="widget_paddingRight">3dp</dimen>
+    <dimen name="widget_paddingLeft">8dp</dimen>
+    <dimen name="widget_poster_width">25dp</dimen>
+    <!-- List widget -->
+    <dimen name="widget_item_width">27dp</dimen>
+    <dimen name="widget_item_height">40dp</dimen>
+    <dimen name="widget_text_large">13sp</dimen>
+    <dimen name="widget_padding_default">8dp</dimen>
+    <dimen name="widget_padding_inline">4dp</dimen>
+
+    <!-- Grids -->
+    <dimen name="showgrid_columnWidth">275dp</dimen>
+    <integer name="grid_column_count">1</integer>
+    <!-- CardView adds padding on pre-v21 to draw shadows, reduce grid spacing accordingly -->
+    <dimen name="grid_topbottom_padding">5dp</dimen>
+    <dimen name="grid_leftright_padding">6dp</dimen>
+    <dimen name="grid_vertical_spacing">3dp</dimen>
+    <dimen name="grid_horizontal_spacing">4dp</dimen>
+    <!-- Workaround margins due to grid inset breaking percent layouts. -->
+    <dimen name="grid_item_margin_vertical">1dp</dimen>
+    <dimen name="grid_item_margin_horizontal">2dp</dimen>
+
+    <!-- Fast scroll width, tested on Android 4.4 and 5.0. -->
+    <dimen name="grid_fast_scroll_padding">28dp</dimen>
+
+    <!-- Show posters, 2:3 aspect ratio -->
+    <dimen name="show_poster_width_default">69dp</dimen>
+    <dimen name="show_poster_height_default">104dp</dimen>
+    <dimen name="show_poster_width_large">101dp</dimen>
+    <dimen name="show_poster_height_large">152dp</dimen>
+    <dimen name="show_poster_width_small">59dp</dimen>
+    <dimen name="show_poster_height_small">88dp</dimen>
+
+    <!-- Most launchers display 72dp icons, scale from recommended 128x176dp product icon size. -->
+    <dimen name="show_poster_width_shortcut">52dp</dimen>
+    <dimen name="show_poster_height_shortcut">72dp</dimen>
+
+    <dimen name="show_poster_width">@dimen/show_poster_width_default</dimen>
+    <dimen name="show_poster_height">@dimen/show_poster_height_default</dimen>
+
+    <!-- Person images -->
+    <dimen name="person_headshot_size">40dp</dimen>
+
+    <!-- Movie posters, 2:3 aspect ratio, though using 66% here to fit percent layouts -->
+    <dimen name="movie_poster_width_default">99dp</dimen>
+    <dimen name="movie_poster_height_default">150dp</dimen>
+    <dimen name="movie_poster_width_large">132dp</dimen>
+    <dimen name="movie_poster_height_large">200dp</dimen>
+    <dimen name="movie_poster_width">@dimen/movie_poster_width_default</dimen>
+    <dimen name="movie_poster_height">@dimen/movie_poster_height_default</dimen>
+
+    <!-- Movies -->
+    <dimen name="movie_grid_columnWidth">@dimen/movie_poster_width</dimen>
+
+    <!-- Inline buttons -->
+    <dimen name="buttons_min_height">64dp</dimen>
+
+    <!-- Reorder drag grip -->
+    <dimen name="drag_grip_ridge_size">4dp</dimen>
+    <dimen name="drag_grip_ridge_gap">2dp</dimen>
+
+    <!-- Refresh progress circle -->
+    <dimen name="swipe_refresh_progress_bar_start_margin">-40dp</dimen>
+    <dimen name="swipe_refresh_progress_bar_end_margin">16dp</dimen>
+
+    <!-- Floating action button -->
+    <!-- Below Android 5.0 seems to add auto-padding for shadows, so reduce margin. -->
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="fab_scroll_threshold">4dp</dimen>
+
+    <!-- Others -->
+    <dimen name="max_width_text_size_body">400dp</dimen>
+    <dimen name="dialog_min_width">300dp</dimen>
+    <dimen name="empty_view_width">250dp</dimen>
+    <dimen name="tab_padding_horizontal">12dp</dimen>
+    <dimen name="search_padding_right">16dp</dimen>
+
+</resources>

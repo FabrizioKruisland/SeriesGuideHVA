@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+
+        <!-- Amazon In-App Purchasing -->
+        <activity android:name="com.battlelancer.seriesguide.billing.amazon.AmazonBillingActivity"/>
+        <!--suppress AndroidDomInspection -->
+        <receiver android:name="com.amazon.device.iap.ResponseReceiver" >
+            <intent-filter>
+                <action
+                    android:name="com.amazon.inapp.purchasing.NOTIFY"
+                    android:permission="com.amazon.inapp.purchasing.Permission.NOTIFY" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

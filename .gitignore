@@ -1,0 +1,45 @@
+﻿# Specific files to exclude
+
+# Any keystores
+*.keystore
+
+# Local configuration files (sdk path, etc)
+gradle.properties
+keystore.properties
+local.properties
+
+### Crashlytics
+fabric.properties
+
+### Linux
+!.gitignore
+*~
+
+### Windows
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+### OSX
+.DS_Store
+
+### IntelliJ
+*.iml
+*.ipr
+*.iws
+!.idea/
+.idea/*
+!.idea/codeStyleSettings.xml
+
+### Gradle
+.gradle/
+build/
+
+## Proguard
+unused.txt

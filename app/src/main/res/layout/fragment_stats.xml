@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        style="@style/Page.Centered"
+        android:animateLayoutChanges="true">
+
+        <com.battlelancer.seriesguide.widgets.EmptyView
+            android:id="@+id/emptyViewStats"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/large_padding"
+            app:emptyViewButtonText="@string/action_try_again"
+            app:emptyViewMessage="@string/statistics_failed" />
+
+        <TextView
+            android:id="@+id/textViewStatsShows"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/emptyViewStats"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/norating"
+            android:textAppearance="@style/TextAppearance.Display3"
+            android:textIsSelectable="true"
+            tools:text="42" />
+
+        <TextView
+            android:id="@+id/labelStatsShows"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewStatsShows"
+            android:layout_centerHorizontal="true"
+            android:text="@string/statistics_shows"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.Caption" />
+
+        <ProgressBar
+            android:id="@+id/progressBarStatsShowsWithNext"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/labelStatsShows"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/default_padding" />
+
+        <TextView
+            android:id="@+id/textViewStatsShowsWithNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/progressBarStatsShowsWithNext"
+            android:textAppearance="@style/TextAppearance.Caption"
+            android:textIsSelectable="true"
+            tools:text="29 WITH NEXT EPISODES" />
+
+        <ProgressBar
+            android:id="@+id/progressBarStatsShowsContinuing"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewStatsShowsWithNext"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/textViewStatsShowsContinuing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/progressBarStatsShowsContinuing"
+            android:textAppearance="@style/TextAppearance.Caption"
+            android:textIsSelectable="true"
+            tools:text="10 CONTINUING" />
+
+        <TextView
+            android:id="@+id/textViewStatsEpisodes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewStatsShowsContinuing"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:text="@string/norating"
+            android:textAppearance="@style/TextAppearance.Display3"
+            android:textIsSelectable="true"
+            tools:text="5260" />
+
+        <TextView
+            android:id="@+id/labelStatsEpisodes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewStatsEpisodes"
+            android:layout_centerHorizontal="true"
+            android:text="@string/statistics_episodes"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.Caption" />
+
+        <ProgressBar
+            android:id="@+id/progressBarStatsEpisodesWatched"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/labelStatsEpisodes"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/default_padding" />
+
+        <TextView
+            android:id="@+id/textViewStatsEpisodesWatched"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/progressBarStatsEpisodesWatched"
+            android:textAppearance="@style/TextAppearance.Caption"
+            android:textIsSelectable="true"
+            tools:text="1803 WATCHED" />
+
+        <TextView
+            android:id="@+id/textViewStatsEpisodesRuntime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewStatsEpisodesWatched"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/large_padding"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:text="@string/norating"
+            android:textAppearance="@style/TextAppearance.Headline"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textIsSelectable="true"
+            tools:ignore="UnusedAttribute"
+            tools:text="61 days 13 hours 29 minutes" />
+
+        <TextView
+            android:id="@+id/labelStatsEpisodesRuntime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewStatsEpisodesRuntime"
+            android:layout_centerHorizontal="true"
+            android:text="@string/runtime_all_episodes"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.Caption" />
+
+        <ProgressBar
+            android:id="@+id/progressBarStatsEpisodesRuntime"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="@dimen/inline_padding"
+            android:layout_below="@id/labelStatsEpisodesRuntime"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/textViewStatsMovies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/labelStatsEpisodesRuntime"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:text="@string/norating"
+            android:textAppearance="@style/TextAppearance.Display3"
+            android:textIsSelectable="true"
+            tools:text="250" />
+
+        <TextView
+            android:id="@+id/labelMovies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewStatsMovies"
+            android:layout_centerHorizontal="true"
+            android:text="@string/statistics_movies"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.Caption" />
+
+        <ProgressBar
+            android:id="@+id/progressBarStatsMoviesWatchlist"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/labelMovies"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/default_padding" />
+
+        <TextView
+            android:id="@+id/textViewStatsMoviesWatchlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/progressBarStatsMoviesWatchlist"
+            android:textAppearance="@style/TextAppearance.Caption"
+            android:textIsSelectable="true"
+            tools:text="1803 WATCHLIST" />
+
+        <TextView
+            android:id="@+id/textViewStatsMoviesWatchlistRuntime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewStatsMoviesWatchlist"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/large_padding"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:text="@string/norating"
+            android:textAppearance="@style/TextAppearance.Headline"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textIsSelectable="true"
+            tools:ignore="UnusedAttribute"
+            tools:text="61 days 13 hours 29 minutes" />
+
+        <TextView
+            android:id="@+id/labelStatsMoviesWatchlistRuntime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewStatsMoviesWatchlistRuntime"
+            android:layout_centerHorizontal="true"
+            android:text="@string/runtime_movies_watchlist"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.Caption" />
+    </RelativeLayout>
+
+</ScrollView>

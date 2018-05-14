@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:descendantFocusability="beforeDescendants"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:minWidth="@dimen/dialog_min_width"
+            android:paddingBottom="@dimen/large_padding">
+
+            <ProgressBar
+                android:id="@+id/progressBarAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+
+            <RelativeLayout
+                android:id="@+id/containerShowInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imageViewAddPoster"
+                    android:layout_width="@dimen/show_poster_width_large"
+                    android:layout_height="@dimen/show_poster_height_large"
+                    android:scaleType="centerInside"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/ic_image_missing" />
+
+                <TextView
+                    android:id="@+id/textViewAddTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/large_padding"
+                    android:layout_marginRight="@dimen/large_padding"
+                    android:layout_toRightOf="@id/imageViewAddPoster"
+                    android:paddingTop="@dimen/default_padding"
+                    android:textAppearance="@style/TextAppearance.Title"
+                    android:textIsSelectable="true"
+                    tools:text="@string/action_shows_add" />
+
+                <TextView
+                    android:id="@+id/textViewAddReleased"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewAddTitle"
+                    android:layout_marginLeft="@dimen/large_padding"
+                    android:layout_marginRight="@dimen/large_padding"
+                    android:layout_toRightOf="@id/imageViewAddPoster"
+                    android:paddingBottom="@dimen/default_padding"
+                    android:textAppearance="@style/TextAppearance.Body"
+                    android:textIsSelectable="true"
+                    tools:text="2014 / Continuing" />
+
+                <TextView
+                    android:id="@+id/textViewAddShowMeta"
+                    style="@style/Block.FlowText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewAddReleased"
+                    android:layout_marginLeft="@dimen/large_padding"
+                    android:layout_marginRight="@dimen/large_padding"
+                    android:layout_toRightOf="@+id/imageViewAddPoster"
+                    android:textAppearance="@style/TextAppearance.Body"
+                    android:textIsSelectable="true"
+                    tools:text="Mon 07:00 PM on Showtime\n60 min" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textViewAddDescription"
+                style="@style/Block.FlowText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/containerShowInfo"
+                android:layout_marginLeft="@dimen/large_padding"
+                android:layout_marginRight="@dimen/large_padding"
+                android:layout_marginTop="@dimen/large_padding"
+                android:maxWidth="@dimen/max_width_text_size_body"
+                android:textAppearance="@style/TextAppearance.Body"
+                android:textIsSelectable="true"
+                tools:text="@string/description_overview" />
+
+            <TextView
+                android:id="@+id/textViewAddGenresLabel"
+                style="@style/Block.WithTopMargin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewAddDescription"
+                android:layout_marginLeft="@dimen/large_padding"
+                android:layout_marginRight="@dimen/large_padding"
+                android:text="@string/show_genres"
+                android:textAppearance="@style/TextAppearance.Body.Bold" />
+
+            <TextView
+                android:id="@+id/textViewAddGenres"
+                style="@style/Block"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/textViewAddGenresLabel"
+                android:layout_marginLeft="@dimen/large_padding"
+                android:layout_marginRight="@dimen/large_padding"
+                android:textAppearance="@style/TextAppearance.Body"
+                tools:text="Comedy, Drama" />
+
+            <TextView
+                android:id="@+id/textViewAddRatingValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewAddGenres"
+                android:layout_marginLeft="@dimen/large_padding"
+                android:layout_marginTop="@dimen/large_padding"
+                android:text="@string/placeholder_rating"
+                android:textAppearance="@style/TextAppearance.Title"
+                tools:text="9.6" />
+
+            <TextView
+                android:id="@+id/textViewAddRatingRange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textViewAddRatingValue"
+                android:layout_marginRight="@dimen/default_padding"
+                android:layout_toRightOf="@+id/textViewAddRatingValue"
+                android:text="@string/format_rating_range"
+                android:textAppearance="@style/TextAppearance.Caption" />
+
+            <TextView
+                android:id="@+id/textViewAddRatingLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textViewAddRatingValue"
+                android:layout_below="@+id/textViewAddRatingValue"
+                android:layout_marginTop="-4dp"
+                android:text="@string/trakt"
+                android:textAppearance="@style/TextAppearance.Caption" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <include layout="@layout/dialog_buttons_divided" />
+
+</LinearLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/activatedBackgroundIndicator">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.battlelancer.seriesguide.widgets.WatchedBox
+            android:id="@+id/watchedBoxEpisode"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="14dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="10dp" />
+
+        <!-- Text appearance set in code. -->
+        <TextView
+            android:id="@+id/textViewEpisodeTitle"
+            style="@style/Widget.SeriesGuide.TextView.SingleLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/textViewEpisodeNumber"
+            android:layout_toRightOf="@id/watchedBoxEpisode"
+            android:ellipsize="end"
+            android:paddingTop="16dp"
+            android:textAppearance="@style/TextAppearance.Subhead"
+            tools:text="Episode Title" />
+
+        <TextView
+            android:id="@+id/textViewEpisodeNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="@dimen/default_padding"
+            android:paddingRight="@dimen/large_padding"
+            android:paddingTop="16dp"
+            android:textAppearance="@style/TextAppearance.Subhead.Secondary"
+            tools:ignore="RtlSymmetry"
+            tools:text="23" />
+
+        <!-- Text appearance set in code. -->
+        <TextView
+            android:id="@+id/textViewEpisodeAirdate"
+            style="@style/Widget.SeriesGuide.TextView.SingleLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewEpisodeTitle"
+            android:layout_toRightOf="@id/watchedBoxEpisode"
+            android:ellipsize="end"
+            android:paddingTop="@dimen/inline_padding"
+            android:textAppearance="@style/TextAppearance.Body.Secondary"
+            tools:text="in 2 days" />
+
+        <TextView
+            android:id="@+id/textViewEpisodeAlternativeNumbers"
+            style="@style/Widget.SeriesGuide.TextView.SingleLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewEpisodeAirdate"
+            android:layout_toLeftOf="@+id/textViewEpisodeNumber"
+            android:layout_toRightOf="@id/watchedBoxEpisode"
+            android:ellipsize="end"
+            android:paddingBottom="@dimen/large_padding"
+            android:paddingTop="@dimen/inline_padding"
+            android:textAppearance="@style/TextAppearance.Caption.Dim"
+            tools:text="42 · DVD 2.0" />
+
+        <ImageView
+            android:id="@+id/imageViewCollected"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_below="@+id/watchedBoxEpisode"
+            android:layout_marginLeft="29dp"
+            android:contentDescription="@string/action_collection_added"
+            app:srcCompat="@drawable/ic_collected_24dp" />
+
+        <ImageView
+            android:id="@+id/imageViewContextMenu"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/description_menu_overflow"
+            android:paddingLeft="@dimen/default_padding"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_more_vert_black_20dp"
+            app:tint="?attr/sgColorIcon"
+            tools:ignore="RtlSymmetry" />
+    </RelativeLayout>
+
+</FrameLayout>
