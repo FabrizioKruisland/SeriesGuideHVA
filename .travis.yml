@@ -69,3 +69,4 @@ before_script:
 script:
 #   - ./gradlew androidDependencies
     - ./gradlew sonarqube -Dsonar.organization=fabriziokruisland-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=907be43528cd29e5f06c94619337d33d12307900
+    - adb shell am instrument -w -r -e package com.battlelancer.seriesguide -e debug false com.battlelancer.seriesguide.test/android.support.test.runner.AndroidJUnitRunner
