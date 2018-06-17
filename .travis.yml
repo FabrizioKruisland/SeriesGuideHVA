@@ -62,6 +62,7 @@ before_script:
 ##  - emulator -avd test -no-window &
 ##  - android-wait-for-emulator
 ##  - adb shell input keyevent 82 &
+#
 - adb shell am instrument -w -r -e package com.battlelancer.seriesguide -e debug false com.battlelancer.seriesguide.test/android.support.test.runner.AndroidJUnitRunner
 
 script:
