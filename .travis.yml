@@ -44,7 +44,9 @@ sudo: required
 #    # Specify at least one system image
 #    # - sys-img-armeabi-v7a-google_apis-$ANDROID_API_LEVEL
 #    - sys-img-armeabi-v7a-google_apis-$EMULATOR_API_LEVEL
-#
+
+     - android-22
+
 before_install:
 #  - java -version
 #  - mkdir "$ANDROID_HOME/licenses" || true
