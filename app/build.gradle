@@ -106,6 +106,19 @@ android {
     }
 }
 
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6"
+    }
+}
+
+apply plugin: "org.sonarqube"
+
 repositories { jcenter() }
 
 
@@ -199,6 +212,9 @@ dependencies {
 
     // required if you want to use Mockito for unit tests
     testImplementation 'org.mockito:mockito-core:2.7.22'
+
+    implementation "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6"
+
 }
 
 endpointsClient {
@@ -216,3 +232,5 @@ def stringPropertyOrPlaceholder(String name) {
 def stringPropertyOrNull(String name) {
     return rootProject.hasProperty(name) ? "\"${rootProject.property(name)}\"" : "null"
 }
+
+apply plugin: "org.sonarqube"
