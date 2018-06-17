@@ -242,6 +242,8 @@ public class JsonExportTask extends AsyncTask<Void, Integer, Integer> {
 
         publishProgress(data.getCount(), 0);
 
+        ParcelFileDescriptor pfd = null;
+        FileOutputStream fileOut = null;
         // try to export all data
         try {
             if (!isUseDefaultFolders) {
@@ -251,23 +253,20 @@ public class JsonExportTask extends AsyncTask<Void, Integer, Integer> {
                     return ERROR_FILE_ACCESS;
                 }
 
-                ParcelFileDescriptor pfd = context.getContentResolver()
+                pfd = context.getContentResolver()
                         .openFileDescriptor(backupFileUri, "w");
                 if (pfd == null) {
                     return ERROR_FILE_ACCESS;
                 }
-                FileOutputStream out = new FileOutputStream(pfd.getFileDescriptor());
+                fileOut = new FileOutputStream(pfd.getFileDescriptor());
 
                 if (type == BACKUP_SHOWS) {
-                    writeJsonStreamShows(out, data);
+                    writeJsonStreamShows(fileOut, data);
                 } else if (type == BACKUP_LISTS) {
-                    writeJsonStreamLists(out, data);
+                    writeJsonStreamLists(fileOut, data);
                 } else if (type == BACKUP_MOVIES) {
-                    writeJsonStreamMovies(out, data);
+                    writeJsonStreamMovies(fileOut, data);
                 }
-
-                // let the document provider know we're done.
-                pfd.close();
             } else {
                 File backupFile;
                 if (type == BACKUP_SHOWS) {
@@ -304,6 +303,20 @@ public class JsonExportTask extends AsyncTask<Void, Integer, Integer> {
             errorCause = e.getMessage();
             return ERROR;
         } finally {
+            if (pfd != null) {
+                try {
+                    pfd.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (fileOut != null) {
+                try {
+                    fileOut.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             data.close();
         }
 
@@ -427,7 +440,7 @@ public class JsonExportTask extends AsyncTask<Void, Integer, Integer> {
         show.seasons = new ArrayList<>();
         final Cursor seasonsCursor = context.getContentResolver().query(
                 Seasons.buildSeasonsOfShowUri(String.valueOf(show.tvdb_id)),
-                new String[] {
+                new String[]{
                         Seasons._ID,
                         Seasons.COMBINED
                 }, null, null, null
@@ -525,7 +538,7 @@ public class JsonExportTask extends AsyncTask<Void, Integer, Integer> {
         final Cursor listItems = context.getContentResolver().query(
                 ListItems.CONTENT_URI, ListItemsQuery.PROJECTION,
                 ListItemsQuery.SELECTION,
-                new String[] {
+                new String[]{
                         list.listId
                 }, null
         );
@@ -593,7 +606,7 @@ public class JsonExportTask extends AsyncTask<Void, Integer, Integer> {
     }
 
     public interface ShowsQuery {
-        String[] PROJECTION = new String[] {
+        String[] PROJECTION = new String[]{
                 Shows._ID,
                 Shows.TITLE,
                 Shows.FAVORITE,
@@ -616,7 +629,7 @@ public class JsonExportTask extends AsyncTask<Void, Integer, Integer> {
                 Shows.RATING_USER,
                 Shows.LANGUAGE
         };
-        String[] PROJECTION_FULL = new String[] {
+        String[] PROJECTION_FULL = new String[]{
                 Shows._ID,
                 Shows.TITLE,
                 Shows.FAVORITE,
@@ -677,7 +690,7 @@ public class JsonExportTask extends AsyncTask<Void, Integer, Integer> {
     }
 
     public interface EpisodesQuery {
-        String[] PROJECTION = new String[] {
+        String[] PROJECTION = new String[]{
                 Episodes._ID,
                 Episodes.NUMBER,
                 Episodes.ABSOLUTE_NUMBER,
@@ -689,7 +702,7 @@ public class JsonExportTask extends AsyncTask<Void, Integer, Integer> {
                 Episodes.DVDNUMBER,
                 Episodes.RATING_USER
         };
-        String[] PROJECTION_FULL = new String[] {
+        String[] PROJECTION_FULL = new String[]{
                 Episodes._ID,
                 Episodes.NUMBER,
                 Episodes.ABSOLUTE_NUMBER,
@@ -735,7 +748,7 @@ public class JsonExportTask extends AsyncTask<Void, Integer, Integer> {
     }
 
     public interface ListsQuery {
-        String[] PROJECTION = new String[] {
+        String[] PROJECTION = new String[]{
                 SeriesGuideContract.Lists.LIST_ID,
                 SeriesGuideContract.Lists.NAME,
                 SeriesGuideContract.Lists.ORDER
@@ -747,7 +760,7 @@ public class JsonExportTask extends AsyncTask<Void, Integer, Integer> {
     }
 
     public interface ListItemsQuery {
-        String[] PROJECTION = new String[] {
+        String[] PROJECTION = new String[]{
                 ListItems.LIST_ITEM_ID, SeriesGuideContract.Lists.LIST_ID, ListItems.ITEM_REF_ID,
                 ListItems.TYPE
         };
@@ -761,7 +774,7 @@ public class JsonExportTask extends AsyncTask<Void, Integer, Integer> {
     }
 
     public interface MoviesQuery {
-        String[] PROJECTION = new String[] {
+        String[] PROJECTION = new String[]{
                 Movies._ID,
                 Movies.TMDB_ID,
                 Movies.IMDB_ID,
