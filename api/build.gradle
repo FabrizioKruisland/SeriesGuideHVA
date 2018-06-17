@@ -27,9 +27,9 @@ dependencies {
 }
 
 // load properties file
-Properties props = new Properties()
-props.load(new FileInputStream(file("../local.properties")))
-def localSdkDir = props["sdk.dir"]
+//Properties props = new Properties()
+//props.load(new FileInputStream(file("../local.properties")))
+//def localSdkDir = props["sdk.dir"]
 
 task generateJavadoc(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
@@ -39,7 +39,7 @@ task generateJavadoc(type: Javadoc) {
 
     options.locale = "en"
     options.windowTitle = "SeriesGuide API"
-    options.linksOffline("http://developer.android.com/reference", "${localSdkDir}/docs/reference")
+//    options.linksOffline("http://developer.android.com/reference", "${localSdkDir}/docs/reference")
     options.noDeprecated = true
     options.noHelp = true
     options.noIndex = true
