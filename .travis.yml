@@ -76,4 +76,6 @@ before_script:
 script:
 #   - ./gradlew androidDependencies
 #   - ./gradlew sonarqube -Dsonar.organization=fabriziokruisland-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=907be43528cd29e5f06c94619337d33d12307900
+    - adb push /Users/FabrizioKruisland/Desktop/projects/android/SeriesGuide/app/build/outputs/apk/androidTest/pure/debug/app-pure-debug-androidTest.apk /data/local/tmp/com.battlelancer.seriesguide.test
+    - adb shell pm install -t -r "/data/local/tmp/com.battlelancer.seriesguide.test"
     - adb shell am instrument -w -r -e package com.battlelancer.seriesguide -e debug false com.battlelancer.seriesguide.test/android.support.test.runner.AndroidJUnitRunner
