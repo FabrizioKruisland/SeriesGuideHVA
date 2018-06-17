@@ -22,8 +22,8 @@ sudo: required
 #      - oracle-java8-installer
 #      - oracle-java8-set-default
 #
-#android:
-#  components:
+android:
+  components:
 #    - tools # to get the new `repository-11.xml`
 #    - platform-tools
 #    - tools # to install Android SDK tools 25.1.x
@@ -44,7 +44,6 @@ sudo: required
 #    # Specify at least one system image
 #    # - sys-img-armeabi-v7a-google_apis-$ANDROID_API_LEVEL
 #    - sys-img-armeabi-v7a-google_apis-$EMULATOR_API_LEVEL
-
      - android-22
 
 before_install:
