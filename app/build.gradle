@@ -16,18 +16,21 @@ android {
 
         buildConfigField("String", "TVDB_API_KEY", stringPropertyOrPlaceholder("TVDB_API_KEY"))
         buildConfigField("String", "TMDB_API_KEY", stringPropertyOrPlaceholder("TMDB_API_KEY"))
-        buildConfigField("String", "TRAKT_CLIENT_ID", stringPropertyOrPlaceholder("TRAKT_CLIENT_ID"))
-        buildConfigField("String", "TRAKT_CLIENT_SECRET", stringPropertyOrPlaceholder("TRAKT_CLIENT_SECRET"))
+        buildConfigField("String", "TRAKT_CLIENT_ID",
+                stringPropertyOrPlaceholder("TRAKT_CLIENT_ID"))
+        buildConfigField("String", "TRAKT_CLIENT_SECRET",
+                stringPropertyOrPlaceholder("TRAKT_CLIENT_SECRET"))
         buildConfigField("String", "IAP_KEY_A", stringPropertyOrPlaceholder("IAP_KEY_A"))
         buildConfigField("String", "IAP_KEY_B", stringPropertyOrPlaceholder("IAP_KEY_B"))
         buildConfigField("String", "IAP_KEY_C", stringPropertyOrPlaceholder("IAP_KEY_C"))
         buildConfigField("String", "IAP_KEY_D", stringPropertyOrPlaceholder("IAP_KEY_D"))
         buildConfigField("String", "IMAGE_CACHE_URL", stringPropertyOrNull("IMAGE_CACHE_URL"))
-        buildConfigField("String", "IMAGE_CACHE_SECRET", stringPropertyOrPlaceholder("IMAGE_CACHE_SECRET"))
+        buildConfigField("String", "IMAGE_CACHE_SECRET",
+                stringPropertyOrPlaceholder("IMAGE_CACHE_SECRET"))
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ eventBusIndex : 'com.battlelancer.seriesguide.SgEventBusIndex' ]
+                arguments = [eventBusIndex: 'com.battlelancer.seriesguide.SgEventBusIndex']
             }
         }
     }
@@ -69,7 +72,7 @@ android {
 
     signingConfigs {
         release {
-            if(rootProject.file('keystore.properties').exists()) {
+            if (rootProject.file('keystore.properties').exists()) {
                 def props = new Properties()
                 props.load(new FileInputStream(rootProject.file('keystore.properties')))
 
@@ -87,7 +90,7 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
-            if(rootProject.file('keystore.properties').exists()) {
+            if (rootProject.file('keystore.properties').exists()) {
                 signingConfig signingConfigs.release
             }
         }
@@ -102,6 +105,9 @@ android {
         }
     }
 }
+
+repositories { jcenter() }
+
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -143,13 +149,13 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
 
-    implementation ("com.uwetrottmann.androidutils:androidutils:${versions.androidUtils}") {
+    implementation("com.uwetrottmann.androidutils:androidutils:${versions.androidUtils}") {
         exclude group: 'com.android.support'
     }
     implementation 'com.uwetrottmann.photoview:library:1.2.4'
     implementation "com.uwetrottmann.thetvdb-java:thetvdb-java:${versions.thetvdb}"
     implementation "com.uwetrottmann.tmdb2:tmdb-java:${versions.tmdb}"
-    implementation ("com.uwetrottmann.trakt5:trakt-java:${versions.trakt}") {
+    implementation("com.uwetrottmann.trakt5:trakt-java:${versions.trakt}") {
         exclude group: 'org.threeten', module: 'threetenbp' // using ThreeTenABP instead
     }
 
@@ -191,6 +197,8 @@ dependencies {
     testImplementation "com.android.support:support-annotations:${versions.supportLibrary}"
     testImplementation "com.google.truth:truth:${versions.truth}"
 
+    // required if you want to use Mockito for unit tests
+    testImplementation 'org.mockito:mockito-core:2.7.22'
 }
 
 endpointsClient {
