@@ -307,14 +307,14 @@ public class JsonExportTask extends AsyncTask<Void, Integer, Integer> {
                 try {
                     pfd.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Timber.e(e, "IOException");
                 }
             }
             if (fileOut != null) {
                 try {
                     fileOut.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Timber.e(e, "IOException");
                 }
             }
             data.close();
