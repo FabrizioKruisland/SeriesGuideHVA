@@ -255,7 +255,7 @@ public class JsonImportTask extends AsyncTask<Void, Integer, Integer> {
                     try {
                         in.close();
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        Timber.e(e, "IOException");
                     }
                 }
             }
