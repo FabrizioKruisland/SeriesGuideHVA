@@ -188,17 +188,25 @@ public class JsonImportTask extends AsyncTask<Void, Integer, Integer> {
                 return ERROR_FILE_ACCESS;
             }
             // ...and the file actually exists
-            ParcelFileDescriptor pfd;
+            ParcelFileDescriptor pfd = null;
             try {
                 pfd = context.getContentResolver().openFileDescriptor(backupFileUri, "r");
+                if (pfd == null) {
+                    Timber.e("File descriptor is null.");
+                    return ERROR_FILE_ACCESS;
+                }
             } catch (FileNotFoundException | SecurityException e) {
                 Timber.e(e, "Backup file not found.");
                 errorCause = e.getMessage();
                 return ERROR_FILE_ACCESS;
-            }
-            if (pfd == null) {
-                Timber.e("File descriptor is null.");
-                return ERROR_FILE_ACCESS;
+            } finally {
+                if (pfd != null) {
+                    try {
+                        pfd.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
             clearExistingData(type);
@@ -234,13 +242,21 @@ public class JsonImportTask extends AsyncTask<Void, Integer, Integer> {
                 return SUCCESS;
             }
 
-            FileInputStream in;
+            FileInputStream in = null;
             try {
                 in = new FileInputStream(backupFile);
             } catch (FileNotFoundException e) {
                 Timber.e(e, "Backup file not found.");
                 errorCause = e.getMessage();
                 return ERROR_FILE_ACCESS;
+            } finally {
+                if (in != null) {
+                    try {
+                        in.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
             clearExistingData(type);
