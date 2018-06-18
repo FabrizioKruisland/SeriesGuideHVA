@@ -106,6 +106,25 @@ android {
     }
 }
 
+subprojects {
+    project.configurations.all {
+        afterEvaluate {project ->
+            if (project.hasProperty("android")) {
+                android {
+                    compileSdkVersion 26
+                    buildToolsVersion '26.0.2'
+                }
+            }
+        }
+        resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == 'com.android.support'
+                    && !details.requested.name.contains('multidex') ) {
+                details.useVersion "26.0.2"
+            }
+        }
+    }
+}
+
 buildscript {
     repositories {
         maven {
@@ -213,7 +232,7 @@ dependencies {
     // required if you want to use Mockito for unit tests
     testImplementation 'org.mockito:mockito-core:2.7.22'
 
-    implementation "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6"
+//    implementation "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6"
 
 }
 
@@ -233,4 +252,4 @@ def stringPropertyOrNull(String name) {
     return rootProject.hasProperty(name) ? "\"${rootProject.property(name)}\"" : "null"
 }
 
-apply plugin: "org.sonarqube"
+//apply plugin: "org.sonarqube"
