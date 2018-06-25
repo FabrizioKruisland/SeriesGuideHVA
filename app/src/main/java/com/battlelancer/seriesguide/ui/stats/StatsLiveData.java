@@ -17,7 +17,7 @@ import com.battlelancer.seriesguide.settings.DisplaySettings;
 import com.battlelancer.seriesguide.util.DBUtils;
 import com.battlelancer.seriesguide.ui.shows.ShowTools;
 
-class StatsLiveData extends LiveData<StatsLiveData.StatsUpdateEvent> {
+public class StatsLiveData extends LiveData<StatsLiveData.StatsUpdateEvent> {
 
     private final Context context;
     private AsyncTask<Void, StatsUpdateEvent, StatsUpdateEvent> task;
@@ -33,7 +33,7 @@ class StatsLiveData extends LiveData<StatsLiveData.StatsUpdateEvent> {
     }
 
     @SuppressLint("StaticFieldLeak")
-    private class StatsTask extends AsyncTask<Void, StatsUpdateEvent, StatsUpdateEvent> {
+    public class StatsTask extends AsyncTask<Void, StatsUpdateEvent, StatsUpdateEvent> {
 
         private static final long PREVIEW_UPDATE_INTERVAL_MS = DateUtils.SECOND_IN_MILLIS;
 
@@ -157,7 +157,7 @@ class StatsLiveData extends LiveData<StatsLiveData.StatsUpdateEvent> {
         }
 
         @Nullable
-        private SparseIntArray processShows(ContentResolver resolver, Stats stats) {
+        public SparseIntArray processShows(ContentResolver resolver, Stats stats) {
             Cursor shows = resolver.query(Shows.CONTENT_URI,
                     new String[]{
                             Shows._ID, // 0
@@ -232,12 +232,12 @@ class StatsLiveData extends LiveData<StatsLiveData.StatsUpdateEvent> {
     }
 
     // class is package-private so direct member access is fine
-    static class Stats {
+    public static class Stats {
         int shows;
         int showsContinuing;
         int showsWithNextEpisodes;
         int episodes;
-        int episodesWatched;
+        public int episodesWatched;
         long episodesWatchedRuntime;
         int movies;
         int moviesWatchlist;

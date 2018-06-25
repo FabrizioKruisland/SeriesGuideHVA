@@ -344,7 +344,7 @@ public class DataLiberationFragment extends Fragment implements
         }
     }
 
-    private void doDataLiberationAction(int requestCode) {
+    public void doDataLiberationAction(int requestCode) {
         if (requestCode == REQUEST_CODE_EXPORT) {
             setProgressLock(true);
 

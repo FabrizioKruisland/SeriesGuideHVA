@@ -20,6 +20,7 @@ import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.widget.TextView;
 import com.battlelancer.seriesguide.R;
 import com.battlelancer.seriesguide.provider.SeriesGuideContract;
 import com.battlelancer.seriesguide.provider.SeriesGuideDatabase;
@@ -153,6 +154,65 @@ public class ShowsActivityTest {
         }
 
         pressBack();
+    }
+
+    @Test
+    public void testAddShowThenReturn() {
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ViewInteraction floatingActionButton = onView(
+                allOf(withId(R.id.buttonShowsAdd), withContentDescription("Add show"),
+                        childAtPosition(
+                                allOf(withId(R.id.rootLayoutShows),
+                                        childAtPosition(
+                                                withId(R.id.drawer_layout),
+                                                0)),
+                                2),
+                        isDisplayed()));
+        floatingActionButton.perform(click());
+
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try {
+            Thread.sleep(700);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ViewInteraction recyclerView = onView(
+                allOf(withId(R.id.recyclerViewShowsDiscover),
+                        childAtPosition(
+                                withId(R.id.constraintLayoutShowsDiscover),
+                                1)));
+        recyclerView.perform(actionOnItemAtPosition(2, click()));
+
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ViewInteraction appCompatButton = onView(
+                allOf(withId(R.id.buttonPositive), withText("Add show"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        2),
+                                2),
+                        isDisplayed()));
+        appCompatButton.perform(click());
+
     }
 
     private static Matcher<View> childAtPosition(final Matcher<View> parentMatcher,

@@ -180,6 +180,10 @@ public class SeriesGuidePreferences extends AppCompatActivity {
         listPref.setSummary(entry == null ? "" : entry.toString().replaceAll("%", "%%"));
     }
 
+    public int getPreferredTheme() {
+        return SeriesGuidePreferences.THEME;
+    }
+
     public static class SettingsFragment extends PreferenceFragment implements
             OnSharedPreferenceChangeListener {
 
@@ -374,6 +378,10 @@ public class SeriesGuidePreferences extends AppCompatActivity {
             setListPreferenceSummary((ListPreference) findPreference(DisplaySettings.KEY_LANGUAGE_PREFERRED));
             setListPreferenceSummary((ListPreference) findPreference(DisplaySettings.KEY_LANGUAGE_FALLBACK));
             updateTimeOffsetSummary(findPreference(DisplaySettings.KEY_SHOWS_TIME_OFFSET));
+        }
+
+        public Preference getPreferredLanguage() {
+            return findPreference(DisplaySettings.KEY_LANGUAGE_PREFERRED);
         }
 
         private void setupAdvancedSettings() {

@@ -35,6 +35,10 @@ public class ConnectTraktTask extends AsyncTask<String, Void, Integer> {
         FinishedEvent(int resultCode) {
             this.resultCode = resultCode;
         }
+
+        public int getResultCode() {
+            return resultCode;
+        }
     }
 
     @SuppressLint("StaticFieldLeak") // using application context

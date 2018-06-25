@@ -381,7 +381,7 @@ public class OverviewFragment extends Fragment implements
         Utils.trackAction(getActivity(), TAG, "Flag Skipped");
     }
 
-    private void changeEpisodeFlag(int episodeFlag) {
+    public void changeEpisodeFlag(int episodeFlag) {
         if (!isEpisodeDataAvailable) {
             return;
         }

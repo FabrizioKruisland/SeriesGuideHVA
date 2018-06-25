@@ -48,7 +48,7 @@ public class AllApisAuthenticator implements Authenticator {
         return null;
     }
 
-    private Request handleTraktAuth(Response response) {
+    public Request handleTraktAuth(Response response) {
         Timber.d("trakt requires auth.");
 
         if (responseCount(response) >= 2) {

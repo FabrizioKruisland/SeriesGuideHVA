@@ -115,8 +115,8 @@ public class HelpActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void openInBrowser() {
-        Utils.launchWebsite(this, getString(R.string.help_url), TAG, "Open In Browser");
+    public boolean openInBrowser() {
+        return Utils.launchWebsite(this, getString(R.string.help_url), TAG, "Open In Browser");
     }
 
     private void createFeedbackEmail() {

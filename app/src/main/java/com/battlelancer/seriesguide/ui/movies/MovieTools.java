@@ -487,7 +487,7 @@ public class MovieTools {
         return details;
     }
 
-    private Ratings loadRatingsFromTrakt(int movieTraktId) {
+    public Ratings loadRatingsFromTrakt(int movieTraktId) {
         try {
             Response<Ratings> response = traktMovies.get()
                     .ratings(String.valueOf(movieTraktId))

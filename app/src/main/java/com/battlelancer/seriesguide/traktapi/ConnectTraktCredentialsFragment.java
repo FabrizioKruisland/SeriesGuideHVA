@@ -115,7 +115,7 @@ public class ConnectTraktCredentialsFragment extends Fragment {
         }
     }
 
-    private void connect() {
+    public void connect() {
         buttonAccount.setEnabled(false);
         startActivity(new Intent(getActivity(), TraktAuthActivity.class));
     }

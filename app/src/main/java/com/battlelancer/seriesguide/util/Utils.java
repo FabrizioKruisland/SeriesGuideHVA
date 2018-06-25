@@ -385,13 +385,13 @@ public class Utils {
     /**
      * Tries to start a new activity to handle the given URL using {@link #openNewDocument}.
      */
-    public static void launchWebsite(@Nullable Context context, @Nullable String url,
+    public static boolean launchWebsite(@Nullable Context context, @Nullable String url,
             @NonNull String logTag, @NonNull String logItem) {
         if (context == null || TextUtils.isEmpty(url)) {
-            return;
+            return false;
         }
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        openNewDocument(context, intent, logTag, logItem);
+        return openNewDocument(context, intent, logTag, logItem);
     }
 
     /**

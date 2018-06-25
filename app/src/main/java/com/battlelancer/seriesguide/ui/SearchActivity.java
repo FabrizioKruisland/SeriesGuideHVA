@@ -102,6 +102,10 @@ public class SearchActivity extends BaseNavDrawerActivity implements
         }
     }
 
+    public AutoCompleteTextView getSearchView() {
+        return searchView;
+    }
+
     private void setupViews(boolean mayShowKeyboard) {
         ButterKnife.bind(this);
         clearButton.setOnClickListener(new View.OnClickListener() {
@@ -391,7 +395,7 @@ public class SearchActivity extends BaseNavDrawerActivity implements
         EventBus.getDefault().postSticky(new SearchQueryEvent(args));
     }
 
-    private void triggerTvdbSearch() {
+    public void triggerTvdbSearch() {
         if (tvdbSearchVisible) {
             searchView.dismissDropDown();
             // extract and post query
